@@ -1,0 +1,20 @@
+= Northern Lights
+
+A reasonably secure and reliable operating system
+
+Copyright (C) 2024 George Witt
+
+The Northern Lights kernel and its operating system components are free
+software, however no license has been chosen yet. I wish to release this
+software under a copyleft license, but all the standard OSI and FSF approved
+ones contain loopholes and clauses I do not like. I don't care to take any
+legal action against anyone who infringes my copyright, but I still reserve
+the right to do so. Refer to link:COPYING.adoc[COPYING] for more information.
+
+Contributions are not accepted at this time.
+
+This program is provided to anyone in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.
+
+link:https://nltsproject.org[nltsproject.org]
