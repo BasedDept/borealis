@@ -14,7 +14,7 @@ the right to do so. Refer to link:COPYING.adoc[COPYING] for more information.
 Contributions are not accepted at this time.
 
 This program is provided to anyone in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.
+*without any warranty*, not even the implied warranty of *merchantability* or
+*fitness for a particular purpose*.
 
 link:https://nltsproject.org[nltsproject.org]
