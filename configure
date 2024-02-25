@@ -1,0 +1,79 @@
+#!/bin/sh
+
+# configure
+# Northern Lights config script
+# Author: George Witt
+# Date: 2024-02-24
+#
+# Copyright (c) 2024 George Witt
+# SPDX-License-Identifier: BSD-2-Clause
+
+TOOL=llvm
+
+unset CC
+unset LD
+unset AR
+unset OBJCOPY
+unset OBJDUMP
+unset RANLIB
+unset SIZE
+unset STRIP
+
+unset CFLAGS
+unset LDFLAGS
+unset TARGET_ARCH
+
+if [ -z ${SKU} ] || [ -z ${ARCH} ]; then
+	echo "Please specify SKU and ARCH."
+	exit 1
+fi
+
+if [ ${SKU} = "prod" ]; then
+	TARGET_SKU="prod"
+	CFLAGS+=" -O2 -DNDEBUG"
+	LDFLAGS+=" -s"
+elif [ ${SKU} = "debug" ]; then
+	TARGET_SKU="debug"
+	CFLAGS+=" -O0 -g -DDEBUG"
+else
+	echo "Invalid TARGET_SKU"
+	exit 1
+fi
+
+if [ ${ARCH} = "riscv" ]; then
+	TARGET_ARCH="riscv"
+	TOOLCHAIN="/opt/riscv"
+else
+	echo "Unsupported TARGET_ARCH"
+	exit 1
+fi
+
+if [ ${TOOL} = "llvm" ]; then
+	CC="clang"
+	CXX="clang++"
+	LD="ld.lld"
+	AR="llvm-ar"
+	OBJCOPY="llvm-objcopy"
+	OBJDUMP="llvm-objdump"
+	RANLIB="llvm-ranlib"
+	SIZE="llvm-size"
+	STRIP="llvm-strip"
+else
+	echo "Unsupported compiler toolchain"
+	exit 1
+fi
+
+echo "TOOLCHAIN=\"${TOOLCHAIN}\"" > config.mk
+echo "CROSSENV=\\" >> config.mk
+echo "PROJECTDIR=\"$(pwd)\"\\" >> config.mk
+echo "CC=\"${CC}\"\\" >> config.mk
+echo "LD=\"${LD}\"\\" >> config.mk
+echo "AR=\"${AR}\"\\" >> config.mk
+echo "OBJCOPY=\"${OBJCOPY}\"\\" >> config.mk
+echo "OBJDUMP=\"${OBJDUMP}\"\\" >> config.mk
+echo "RANLIB=\"${RANLIB}\"\\" >> config.mk
+echo "SIZE=\"${SIZE}\"\\" >> config.mk
+echo "STRIP=\"${STRIP}\"\\" >> config.mk
+echo "TARGET_ARCH=\"${TARGET_ARCH}\"\\" >> config.mk
+echo "CFLAGS_GLOBAL=\"${CFLAGS}\"\\" >> config.mk
+echo "LDFLAGS_GLOBAL=\"${LDFLAGS}\"" >> config.mk

@@ -2,7 +2,7 @@
  * @file stddef.h
  * @brief Common definitions
  * @author George Witt
- * @date 2024-02-04
+ * @date 2024-02-24
  *
  * ISO/IEC 9899:1990 7.1.6
  * ISO/IEC 9899:2011 7.19
@@ -11,12 +11,13 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#if !defined(__STDDEF_H_WANT_NULL__)
+#if !defined(__STDDEF_H_WANT_NULL__) && !defined (__STDDEF_H_WANT_size_t__)
 
 #ifndef __STDDEF_H__
 #define __STDDEF_H__
 
 #define __STDDEF_H_WANT_NULL__
+#define __STDDEF_H_WANT_size_t__
 
 /**
  * @def offsetof
@@ -33,13 +34,6 @@
  * ISO/IEC 9899:1990 7.1.6
  */
 typedef signed long ptrdiff_t;
-
-/**
- * @typedef size_t
- *
- * ISO/IEC 9899:1990 7.1.6
- */
-typedef unsigned long size_t;
 
 /**
  * @typedef wchar_t
@@ -82,4 +76,15 @@ typedef size_t rsize_t;
 #define NULL ((void*)0)
 
 #undef __STDDEF_H_WANT_NULL__
+#endif
+
+#if defined(__STDDEF_H_WANT_size_t__)
+/**
+ * @typedef size_t
+ *
+ * ISO/IEC 9899:1990 7.1.6
+ */
+typedef unsigned long size_t;
+
+#undef __STDDEF_H_WANT_size_t__
 #endif
