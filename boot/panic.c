@@ -127,3 +127,21 @@ void _oops(int err, void *ptr, const char *file, int line,
     puts("\n\n");
     puts("--------------------------------------------------------------------------------\n");
 }
+
+__attribute__((noinline))
+noreturn void _panic_wrapper(int err, const char * file, int line,
+                                    const char * func, const char * msg)
+{
+    void *ptr = NULL;
+    __asm__ volatile ("mv %0, ra" : "=r" (ptr) :: "ra");
+    _panic(err, ptr, file, line, func, msg);
+}
+
+__attribute__((noinline))
+void _oops_wrapper(int err, const char * file, int line,
+                                    const char * func, const char * msg)
+{
+    void *ptr = NULL;
+    __asm__ volatile ("mv %0, ra" : "=r" (ptr) :: "ra");
+    _oops(err, ptr, file, line, func, msg);
+}
