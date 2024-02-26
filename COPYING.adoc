@@ -1,4 +1,4 @@
-= Northern Lights Copyright Notice
+= Northern Lights Copyright Information
 :revdate: February 20, 2024
 
 Copyright (C) 2024 George Witt
@@ -19,3 +19,17 @@ software, even if advised of the possibility of such damage.*
 The views and conclusions contained in the software and documentation are those
 of the contributors and should not be interpreted as representing official
 policies, either expressed or implied, of the Northern Lights Project.
+
+== Attribution Notices
+All required license text from imported code is included in link:LICENSES[LICENSES].
+The following is a list of copyright notices from imported code.
+
+=== libfdt
+
+Copyright (C) 2006 David Gibson, IBM Corporation. +
+Copyright (C) 2012 David Gibson, IBM Corporation. +
+Copyright (C) 2012 Kim Phillips, Freescale Semiconductor. +
+Copyright (C) 2014 David Gibson <david@gibson.dropbear.id.au> +
+Copyright (C) 2016 Free Electrons +
+Copyright (C) 2016 NextThing Co. +
+Copyright (C) 2018 embedded brains GmbH

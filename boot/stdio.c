@@ -16,14 +16,14 @@
 #define CONSOLE_BOLD "\x1b[1m"
 #define CONSOLE_RESET "\x1b[0m"
 
-int puts(const char *s)
-{
-    return firmware_puts(s);
-}
-
 int putchar(int c)
 {
     return firmware_putchar(c);
+}
+
+int puts(const char *s)
+{
+    return firmware_puts(s);
 }
 
 void perror(const char *s)

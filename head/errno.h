@@ -17,7 +17,8 @@
 #define __ERRNO_H__
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L && \
-    !defined(_POSIX_C_SOURCE) && !defined(_XOPEN_SOURCE)
+    (!defined(_POSIX_C_SOURCE) || !defined(_XOPEN_SOURCE) || \
+    !defined(_NLTS_SOURCE))
 #define _POSIX_C_SOURCE 200809L
 #define _XOPEN_SOURCE 700
 #define _NLTS_SOURCE 0

@@ -7,7 +7,7 @@
  * Copyright (c) 2024 George Witt
  * SPDX-License-Identifier: NOASSERTION
  */
- #include <errno.h>
+#include <errno.h>
 
 // errno is a global variable during the early boot process, since only the boot
 // core is used

@@ -1,0 +1,45 @@
+/**
+ * @file fdt_empty_tree.c
+ * @brief FDT empty tree
+ * @author David Gibson
+ * @date 2024-02-25
+ *
+ * libfdt - Flat Device Tree manipulation
+ *
+ * Copyright (C) 2012 David Gibson, IBM Corporation.
+ * SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+ */
+
+#include "libfdt_env.h"
+
+#include <fdt.h>
+#include <libfdt.h>
+
+#include "libfdt_internal.h"
+
+int fdt_create_empty_tree(void *buf, int bufsize)
+{
+	int err;
+
+	err = fdt_create(buf, bufsize);
+	if (err)
+		return err;
+
+	err = fdt_finish_reservemap(buf);
+	if (err)
+		return err;
+
+	err = fdt_begin_node(buf, "");
+	if (err)
+		return err;
+
+	err =  fdt_end_node(buf);
+	if (err)
+		return err;
+
+	err = fdt_finish(buf);
+	if (err)
+		return err;
+
+	return fdt_open_into(buf, buf, bufsize);
+}
