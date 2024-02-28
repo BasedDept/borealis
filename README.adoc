@@ -4,14 +4,22 @@ A reasonably secure and reliable operating system
 
 Copyright (C) 2024 George Witt
 
-The Northern Lights kernel and its operating system components are free software, however no license has been chosen yet. I wish to release this software under a copyleft license, but all the standard OSI and FSF approved ones contain loopholes and clauses I do not like. I don't care to take any legal action against anyone who infringes my copyright, but I still reserve the right to do so. Refer to link:COPYING.adoc[COPYING] for more information.
+The Northern Lights kernel and its operating system components are
+"source-available" software. You are free to use this software internally for
+any purpose. In the future, it will be released under a free software license.
+API header files are released under the BSD 2-Clause license. Refer to
+link:COPYING.adoc[COPYING] for more information.
 
-Contributions are not accepted at this time.
+Contributions are not accepted at this time, however bug reports are welcome.
 
-This program is provided to anyone in the hope that it will be useful, but *without any warranty*, not even the implied warranty of *merchantability* or *fitness for a particular purpose*.
+This program is provided to anyone in the hope that it will be useful, but
+*without any warranty*, not even the implied warranty of *merchantability* or
+*fitness for a particular purpose*.
 
 == Build Instructions
-This OS is designed to be cross-compiled. To build the debug version for the RISC-V architecture, you need to install the `riscv-gnu-toolchain` to `/opt/riscv` with LLVM enabled. After doing that, simply run:
+This OS is designed to be cross-compiled. To build the debug version for the
+RISC-V architecture, you need to install the `riscv-gnu-toolchain` to
+`/opt/riscv` with LLVM enabled. After doing that, simply run:
 
 $ `ARCH=riscv SKU=debug ./configure && make`
 
@@ -19,6 +27,7 @@ Other architectures are not currently supported.
 
 == Booting
 
-This OS currently runs on the QEMU virt platform. Simply add the `-kernel boot/kernimg` flag to QEMU's arguments.
+This OS currently runs on the QEMU virt platform. Simply add the
+`-kernel boot/kernimg` flag to QEMU's arguments.
 
 link:https://nltsproject.org[nltsproject.org]
