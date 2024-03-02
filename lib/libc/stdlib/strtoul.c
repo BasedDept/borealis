@@ -1,16 +1,18 @@
 /**
- * @file stdlib.c
- * @brief Statically linked stdlib.h functions
+ * @file stdlib/strtoul.c
+ * @brief strtoul
  * @author George Witt
- * @date 2024-02-25
+ * @date 2024-03-02
+ *
+ * ISO/IEC 9899:1990 7.10.1.6
  *
  * Copyright (c) 2024 George Witt
  * SPDX-License-Identifier: NOASSERTION
  */
 #include <stdlib.h>
 
-#include <ctype.h>
 #include <string.h>
+#include <ctype.h>
 
 unsigned long int strtoul(const char * restrict nptr, char ** restrict endptr, int base)
 {
