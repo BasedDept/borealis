@@ -28,7 +28,8 @@ OBJS= string/memcpy.o \
 	ctype/isspace.o \
 	stdio/perror.o
 
-CFLAGS= $(CFLAGS_GLOBAL) -std=c18 -Wall -ffreestanding -nostdinc -I"$(PROJECTDIR)/head" -fpic
+CFLAGS= $(CFLAGS_GLOBAL) -std=c18 -Wall -ffreestanding -nostdinc \
+        -I"$(PROJECTDIR)/head" -fpic
 LDFLAGS= $(LDFLAGS_GLOBAL) -nostdlib -z relro -z now
 
 all: $(LIBA)

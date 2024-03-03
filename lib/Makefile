@@ -10,8 +10,10 @@
 
 all:
 	@cd libc; $(MAKE)
+	@cd libada; $(MAKE)
 	@cd libfdt; $(MAKE)
 
 clean:
 	@cd libc; $(MAKE) clean
+	@cd libada; $(MAKE) clean
 	@cd libfdt; $(MAKE) clean

@@ -19,7 +19,7 @@ This program is provided to anyone in the hope that it will be useful, but
 == Build Instructions
 This OS is designed to be cross-compiled. To build the debug version for the
 RISC-V architecture, you need to install the `riscv-gnu-toolchain` to
-`/opt/riscv` with LLVM enabled. After doing that, simply run:
+`/opt/riscv` with LLVM and Ada enabled. After doing that, simply run:
 
 $ `ARCH=riscv SKU=debug ./configure && make`
 

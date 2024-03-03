@@ -3,7 +3,7 @@
 # configure
 # Northern Lights config script
 # Author: George Witt
-# Date: 2024-02-24
+# Date: 2024-03-02
 #
 # Copyright (c) 2024 George Witt
 # SPDX-License-Identifier: BSD-2-Clause
@@ -11,6 +11,9 @@
 TOOL=llvm
 
 unset CC
+unset CXX
+unset GNAT
+unset GNATBIND
 unset LD
 unset AR
 unset OBJCOPY
@@ -20,6 +23,8 @@ unset SIZE
 unset STRIP
 
 unset CFLAGS
+unset CXXFLAGS
+unset ADAFLAGS
 unset LDFLAGS
 unset TARGET_ARCH
 
@@ -43,14 +48,18 @@ fi
 if [ ${ARCH} = "riscv" ]; then
 	TARGET_ARCH="riscv"
 	TOOLCHAIN="/opt/riscv"
+	CFLAGS+=" -march=rv64imafdc -mabi=lp64d"
+	ADAFLAGS+=" -march=rv64imafdc -mabi=lp64d"
 else
 	echo "Unsupported TARGET_ARCH"
 	exit 1
 fi
 
 if [ ${TOOL} = "llvm" ]; then
-	CC="clang"
-	CXX="clang++"
+	CC="clang -target riscv64-unknown-elf"
+	CXX="clang++ -target riscv64-unknown-elf"
+	GNAT="riscv64-unknown-elf-gcc -x ada"
+	GNATBIND="riscv64-unknown-elf-gnatbind"
 	LD="ld.lld"
 	AR="llvm-ar"
 	OBJCOPY="llvm-objcopy"
@@ -67,6 +76,9 @@ echo "TOOLCHAIN=\"${TOOLCHAIN}\"" > config.mk
 echo "CROSSENV=\\" >> config.mk
 echo "PROJECTDIR=\"$(pwd)\"\\" >> config.mk
 echo "CC=\"${CC}\"\\" >> config.mk
+echo "CXX=\"${CXX}\"\\" >> config.mk
+echo "GNAT=\"${GNAT}\"\\" >> config.mk
+echo "GNATBIND=\"${GNATBIND}\"\\" >> config.mk
 echo "LD=\"${LD}\"\\" >> config.mk
 echo "AR=\"${AR}\"\\" >> config.mk
 echo "OBJCOPY=\"${OBJCOPY}\"\\" >> config.mk
@@ -76,4 +88,6 @@ echo "SIZE=\"${SIZE}\"\\" >> config.mk
 echo "STRIP=\"${STRIP}\"\\" >> config.mk
 echo "TARGET_ARCH=\"${TARGET_ARCH}\"\\" >> config.mk
 echo "CFLAGS_GLOBAL=\"${CFLAGS}\"\\" >> config.mk
+echo "CXXFLAGS_GLOBAL=\"${CXXFLAGS}\"\\" >> config.mk
+echo "ADAFLAGS_GLOBAL=\"${ADAFLAGS}\"\\" >> config.mk
 echo "LDFLAGS_GLOBAL=\"${LDFLAGS}\"" >> config.mk

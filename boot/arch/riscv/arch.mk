@@ -7,7 +7,12 @@
 # SPDX-License-Identifier: BSD-2-Clause
 
 CFLAGS_ARCH= -fno-pie -fno-pic -mcmodel=medany
-OBJS_ARCH= arch/$(TARGET_ARCH)/head.o arch/$(TARGET_ARCH)/crt0.o arch/$(TARGET_ARCH)/crt1.o arch/$(TARGET_ARCH)/payload.o arch/$(TARGET_ARCH)/riscv_sbi.o
+ADAFLAGS_ARCH= -fno-pie -fno-pic -mcmodel=medany
+OBJS_ARCH= arch/$(TARGET_ARCH)/head.o \
+           arch/$(TARGET_ARCH)/crt0.o \
+           arch/$(TARGET_ARCH)/crt1.o \
+           arch/$(TARGET_ARCH)/payload.o \
+           arch/$(TARGET_ARCH)/riscv_sbi.o
 
 arch/$(TARGET_ARCH)/head.o: arch/$(TARGET_ARCH)/head.S
 arch/$(TARGET_ARCH)/crt0.o: arch/$(TARGET_ARCH)/crt0.S

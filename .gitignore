@@ -4,3 +4,8 @@
 *.ko
 *.elf
 *.dtb
+b~*.adb
+b~*.ads
+b_*.adb
+b_*.ads
+*.ali

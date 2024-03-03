@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>
-#include <panic.h>
+#include "panic.h"
 
 const struct fdt_header *fdt = NULL;
 
