@@ -1,14 +1,23 @@
 = Northern Lights
 
-A reasonably secure and reliable operating system
+A secure and reliable operating system
 
-Copyright (C) 2024 George Witt
+Copyright (C) 2024 George Witt. All rights reserved.
+
+[IMPORTANT]
+====
+This is *not* free software. There author reserves certain copyrights and patent
+rights which disqualify this software from being considered free and/or open
+source software under the FSF and OSI definitions. Please see
+link:COPYING.adoc[COPYING] for more information.
+====
 
 The Northern Lights kernel and its operating system components are
 "source-available" software. You are free to use this software internally for
-any purpose. In the future, it will be released under a free software license.
-API header files are released under the BSD 2-Clause license. Refer to
-link:COPYING.adoc[COPYING] for more information.
+non-commercial purposes, but modification and distribution is not allowed
+(other than to the minimal extent required to comply with platform terms). In
+the future, it will be released under a free software license. Refer to
+link:COPYING.adoc[COPYING] for license terms and required notices.
 
 Contributions are not accepted at this time, however bug reports are welcome.
 
