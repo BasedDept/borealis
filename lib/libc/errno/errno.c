@@ -2,7 +2,7 @@
  * @file errno/errno.c
  * @brief errno
  * @author George Witt
- * @date 2024-03-02
+ * @date 2024-11-29
  *
  * ISO/IEC 9899:1990 7.1.4
  *
@@ -13,9 +13,9 @@
 
 // errno is a global variable during the early boot process, since there is no
 // thread local storage
-int errno_g = 0;
+int __g_errno = 0;
 
-int *__errno_location()
+int *__errno()
 {
-	return &errno_g;
+	return &__g_errno;
 }

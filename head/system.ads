@@ -6,7 +6,7 @@
 --  ISO/IEC 8652:1995 13.7
 --
 --  Copyright (c) 2024 George Witt
---  SPDX-License-Identifier: BSD-2-Clause
+--  SPDX-License-Identifier:
 
 package System is
    pragma Pure;

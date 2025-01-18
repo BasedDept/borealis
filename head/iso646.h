@@ -7,12 +7,12 @@
  * ISO/IEC 9899:1990/AMD 1:1995
  *
  * Copyright (c) 2024 George Witt
- * SPDX-License-Identifier: BSD-2-Clause
+ * SPDX-License-Identifier: 
  */
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199409L
 #ifndef __ISO646_H__
-#define __ISO646_H__
+#define __ISO646_H__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
 
 /**
  * @def and

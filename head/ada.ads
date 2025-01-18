@@ -6,7 +6,7 @@
 --  ISO/IEC 8652:1995 A.2
 --
 --  Copyright (c) 2024 George Witt
---  SPDX-License-Identifier: BSD-2-Clause
+--  SPDX-License-Identifier:
 
 package Ada is
    pragma No_Elaboration_Code_All;

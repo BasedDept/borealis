@@ -33,6 +33,17 @@ if [ -z ${SKU} ] || [ -z ${ARCH} ]; then
 	exit 1
 fi
 
+if [ ${ARCH} = "riscv" ]; then
+	TARGET_ARCH="riscv"
+	TOOLCHAIN="/opt/riscv"
+	CFLAGS+=" -target riscv64-unknown-elf -march=rv64imafdc -mabi=lp64d"
+	ADAFLAGS+=" -target riscv64-unknown-elf -march=rv64imafdc -mabi=lp64d"
+else
+	echo "Unsupported TARGET_ARCH"
+	exit 1
+fi
+
+
 if [ ${SKU} = "prod" ]; then
 	TARGET_SKU="prod"
 	CFLAGS+=" -O2 -DNDEBUG"
@@ -45,19 +56,9 @@ else
 	exit 1
 fi
 
-if [ ${ARCH} = "riscv" ]; then
-	TARGET_ARCH="riscv"
-	TOOLCHAIN="/opt/riscv"
-	CFLAGS+=" -march=rv64imafdc -mabi=lp64d"
-	ADAFLAGS+=" -march=rv64imafdc -mabi=lp64d"
-else
-	echo "Unsupported TARGET_ARCH"
-	exit 1
-fi
-
 if [ ${TOOL} = "llvm" ]; then
-	CC="clang -target riscv64-unknown-elf"
-	CXX="clang++ -target riscv64-unknown-elf"
+	CC="clang"
+	CXX="clang++"
 	GNAT="riscv64-unknown-elf-gcc -x ada"
 	GNATBIND="riscv64-unknown-elf-gnatbind"
 	LD="ld.lld"

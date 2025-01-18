@@ -13,6 +13,7 @@
 #include <stdnoreturn.h>
 #include <stddef.h>
 
+//NOLINTBEGIN(cert-dcl37-c)
 extern noreturn void _halt(void);
 extern void _oops(int err, void *ptr, const char *file, int line,
                                     const char *func, const char *msg);
@@ -31,5 +32,6 @@ noreturn void _panic_wrapper(int err, const char * file, int line,
 __attribute__((noinline))
 void _oops_wrapper(int err, const char * file, int line,
                                     const char * func, const char * msg);
+//NOLINTEND(cert-dcl37-c)
 
 #endif

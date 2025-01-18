@@ -10,13 +10,13 @@
 
 OUTPUT_ARCH(riscv)
 ENTRY(_mbr)
-STACK_SIZE = 0x8000;
+STACK_SIZE = 0x10000;
 MEMORY
 {
     rom (rx) : ORIGIN = 0x00001000, LENGTH = 60K
-    sbi (rx) : ORIGIN = 0x80000000, LENGTH = 128K
-    ram (rwx) : ORIGIN = 0x80200000, LENGTH = 128K
     flash (rwx) : ORIGIN = 0x20000000, LENGTH = 64M
+    /* ram (rwx) : ORIGIN = 0x80000000, LENGTH = 2M */
+    ram (rwx) : ORIGIN = 0x80080000, LENGTH = 0x1c0000
 }
 SECTIONS
 {
@@ -47,6 +47,10 @@ SECTIONS
     .bss (NOLOAD) : {
         *(.bss)
         *(.bss*)
+    } >ram
+
+    .heap (NOLOAD) : ALIGN(16) {
+        PROVIDE(__heap = .);
     } >ram
 
     .stack (NOLOAD) : {

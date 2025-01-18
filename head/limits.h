@@ -8,11 +8,11 @@
  * ISO/IEC 9899:1999 7.10
  *
  * Copyright (c) 2024 George Witt
- * SPDX-License-Identifier: BSD-2-Clause
+ * SPDX-License-Identifier: 
  */
 
 #ifndef __LIMITS_H__
-#define __LIMITS_H__
+#define __LIMITS_H__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
 
 /**
  * @def CHAR_BIT

@@ -1,0 +1,206 @@
+= Northern Lights Contributing Guide
+:revdate: Dec 7, 2024
+
+[NOTE]
+====
+This project is currently *not* open for contributions. Work is being done to get this project ready for external contributions, but until a sufficent amount of functional code is written, they will have to wait.
+====
+
+== Community Guidelines
+
+In order to participate in project discussions, you must acknowlege the
+link:CODE_OF_CONDUCT.adoc[Code of Conduct]. You must also acknowlege
+that the Project Lead has ultimate authority over all project decisions,
+such as who gets maintainer roles, which commits get merged, and how
+rules are enforced.
+
+This project is not open-source or open-commit. We strive for high
+standards of software quality. Contributions will be accepted based on
+the merit of the author and/or after scrutiny of the code submitted.
+*Before starting any work, please confirm with the Project Lead or
+Maintainer that the prospective change is needed.*
+
+== Preferred Inbound Licenses
+
+The follwing licenses are acceptable for most contributions. Other
+licenses require prior approval.
+
+* BSD Zero Clause License
+* ISC License
+* BSD 2-Clause "Simplified" License
+
+A license with an explicit patent grant may be required for some
+contributions, especially if the contribution contains a novel algorithm
+or protocol. The following licenses are accptable for this purpose.
+
+* BSD-2-Clause Plus Patent License
+
+All contributors must certify their work according to the Developer
+Certificate of Origin. The following is a copy of the DCO.
+
+____
+Developer's Certificate of Origin 1.1
+
+By making a contribution to this project, I certify that:
+
+a. The contribution was created in whole or in part by me and I have the
+   right to submit it under the open source license indicated in the
+   file; or
+
+b. The contribution is based upon previous work that, to the best of my
+   knowledge, is covered under an appropriate open source license and I
+   have the right under that license to submit that work with
+   modifications, whether created in whole or in part by me, under the
+   same open source license (unless I am permitted to submit under a
+   different license), as indicated in the file; or
+
+c. The contribution was provided directly to me by some other person who
+   certified (a), (b) or (c) and I have not modified it.
+
+d. I understand and agree that this project and the contribution are
+   public and that a record of the contribution (including all personal
+   information I submit with it, including my sign-off) is maintained
+   indefinitely and may be redistributed consistent with this project or
+   the open source license(s) involved.
+____
+
+== Language Requirements
+
+All code shall be written in C, according to either ISO/IEC 9899:2018 or
+ISO/IEC 9899:2024. Extensions such as inline assembly, architecture-
+specific intrinsics, and compiler-specific attributes and pragmas may be
+used. An effort shall be made to avoid extensions wherever possible or
+abstract them behind a header file.
+
+== Documentation Guidelines
+
+All externally visible symbols should be documented in a comment above
+either the definition or the declaration of the symbol, unless otherwise
+described in a specification document. The JavaDoc convention is used
+for this purpose.
+
+All lines in plain text files shall not exceed 72 characters.
+Indentation shall consist of 3 spaces.
+
+Traditional industry-standard terminology must be used for all interface
+naming and documentation. Alternative language often deemed as more
+"inclusive" causes confusion, often doesn't have the same meaning, and
+thus should not be used. It also arguably violates the apolitical stance
+of this project's community guidelines. The following are some examples
+of preferred terminology:
+
+* blacklist/whitelist as opposed to allow list/deny list
+* blackbox/whitebox as opposed to closed box/open box
+* grandfathered in
+* master/slave as opposed to leader/follower
+* parent/child
+* master branch or trunk
+* webmaster, postmaster, and hostmaster
+* read team, white team, yellow team, and blue team
+* dumb/smart
+* dummy value
+* sanity check
+* male/female, connector/pin/receptacle, or plug/socket/jack
+* man-in-the-middle as opposed to person-in-the-middle
+
+== Style Guidelines
+
+* Lines of code shall not exceed 80 characters (not including line
+  ending), except when required by language.
+* Code shall be indented according to scope. Arguments and conditionals
+  shall be indented according to parenthesis scope.
+* Scope indentation shall consist of 4 spaces, except when required by
+  the language.
+* Double line breaks and text alignment may be used for improved
+  readability.
+* Use underscores instead of camel case.
+* Only abbreviate words over 6 characters.
+* Use industry standard abbreviations such as ones used by C/POSIX.
+* Use object-verb-type order for function names.
+* A space shall be used after control flow keywords, such as `if`,
+  `while`, and `for`.
+* Opening brackets for function definitions shall appear on a separate
+  line.
+
+=== Library Symbol Naming Style
+
+"Public" means any publicly accessible interface.
+
+"Hidden" means any publicly accessible symbol or macro that should not
+be used directly by external code.
+
+"Private" means any interface that is internal to a module.
+
+Potentially reserved identifiers shall not be used, except in the
+standard library implementation.
+
+==== Macros
+
+* Global: `<NAME>`
+* Public: `<APINAME>_<NAME>`
+* Hidden: `LIB<LIBNAME>_<NAME>`
+* Private: `<NAME>`
+* Include Guards: `LIB<LIBNAME>_DIR_FILE_H`
+
+==== Function-like Macros
+
+* Global: `<name>`
+* Public: `<apiname>_<name>`
+* Hidden: `_lib<libname>_<name>`
+* Private: `<name>`
+
+==== Statement Macros
+
+* Global: `<name>_`
+* Public: `<apiname>_<name>_`
+* Hidden: `_lib<libname>_<name>_`
+* Private: `<name>_`
+
+==== Enums, Unions, Structs
+
+* Global: `<name>`
+* Public: `<apiname>_<name>`
+* Hidden: `_lib<libname>_<name>`
+* Private: `<name>`
+
+==== Typedefs
+
+* Global: `<name>_t`
+* Public: `<apiname>_<name>_t`
+* Hidden: `_lib<libname>_<name>_t`
+* Private: `<name>_t`
+
+==== Enum Values
+
+* Global: `<ENUMNAME>_<NAME>`
+* Public: `<APINAME>_<ENUMNAME>_<NAME>`
+* Hidden: `LIB<LIBNAME>_<ENUMNAME>_<NAME>`
+* Private: `<ENUMNAME>_<NAME>`
+
+==== Functions
+
+* Program: `<name>`
+* Program Hidden: `_<name>`
+* Public: `<apiname>_<name>`
+* Hidden: `_lib<libname>_<name>`
+* Private: `<name>`
+
+==== Variables
+
+* Program Global: `g_<name>`
+* Public: `<apiname>_<name>`
+* Hidden: `_lib<libname>_<name>`
+* Private: `<name>`
+* Local: `<name>`
+* Pointers: `<name>_p`
+
+
+== MISRA/Correctness Audit
+
+All code shall be compliant with MISRA C:2012 (including all
+amendments). Any violations of "Required" or "Advisory" rules and
+directives shall be documented.
+
+== Submitting Patches
+
+All commits must be signed off and cryptographically signed.

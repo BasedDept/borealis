@@ -1,0 +1,47 @@
+= Northern Lights Code of Conduct
+:revdate: December 7, 2024
+
+Based on: https://srid.ca/coc
+
+== Code of Conduct
+
+This document provides community guidelines for a safe, respectful,
+productive, and collaborative place for any person who is willing to
+contribute to the associated project. It applies to all “collaborative
+space”, which is defined as community communications channels (such as
+mailing lists, submitted patches, commit comments, etc.).
+
+* Participants will be tolerant of opposing views.
+* Participants must ensure that their language and actions are free of
+  personal attacks and disparaging personal remarks.
+* When interpreting the words and actions of others, participants
+  should always assume good intentions.
+* Behaviour which can be reasonably considered harassment will not be
+  tolerated.
+
+== Apolitical Stance
+
+Politics not directly relevant to the project or community should not
+be discussed or mentioned in project spaces. We are here to enjoy
+working together on creating software (with equity and
+parity{empty}footnote:[peace and harmony], regardless of our background
+or identity) not to push personal politics onto others.footnote:[The
+recent years have been seeing a decline in toxic sinistral statist
+ideological politics in tech spaces, which ideology goes directly
+against the meritocratic and (actually) inclusive nature of those
+spaces. Any resurgence of attempts at reversing this decline will not be
+tolerated, and the people involved will be asked to stop or leave, for
+the benefit of the rest of the community members.]
+
+== Affective Stance
+
+Ultimately, a “code” of conduct is only a guideline. Participants are
+encouraged to become harmless (i.e., being sans malice) in all of their
+interactions, for it will make such ethics and guidelines utterly
+redundant.
+
+The Project Lead may enforce these guidelines at his or her discretion.
+No moderation board or oversight committee shall convene for purposes of
+enforcement, nor shall any other participant hold such power. Practical
+remedies for continued violation, where such violation affects team
+cohesion, may include suspension and/or expulsion from the project.

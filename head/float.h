@@ -2,18 +2,21 @@
  * @file float.h
  * @brief Characteristics of floating types
  * @author George Witt
- * @date 2024-02-03
+ * @date 2024-11-30
  *
  * ISO/IEC 9899:1990 7.1.5
  * ISO/IEC 9899:1999 7.7
  * ISO/IEC 9899:2011 7.7
+ * ISO/IEC 9899:2024 7.7
  *
  * Copyright (c) 2024 George Witt
- * SPDX-License-Identifier: BSD-2-Clause
+ * SPDX-License-Identifier: 
  */
 
 #ifndef __FLOAT_H__
-#define __FLOAT_H__
+#define __FLOAT_H__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
+
+//__STDC_IEC_559__ 1
 
 #if defined(__STDC_HOSTED__) && __STDC_HOSTED__ == 1
 
@@ -24,7 +27,7 @@
  */
 #define FLT_ROUNDS (__flt_rounds())
 
-int __flt_rounds(void);
+int __flt_rounds(void); /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
 
 #else
 
@@ -192,5 +195,80 @@ int __flt_rounds(void);
 #define LDBL_TRUE_MIN (6.475175119438025110924438958227646553e-4966L)
 
 #endif
+
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 202311L
+
+/**
+ * @def FLT_IS_IEC_60559
+ * @def DBL_IS_IEC_60559
+ * @def LDBL_IS_IEC_60559
+ *
+ * ISO/IEC 9899:2024 5.2.5.3.3
+ */
+#define FLT_IS_IEC_60559 1
+#define DBL_IS_IEC_60559 1
+#define LDBL_IS_IEC_60559 1
+
+/**
+ * @def FLT_SNAN
+ * @def DBL_SNAN
+ * @def LDBL_SNAN
+ *
+ * ISO/IEC 9899:2024 5.2.5.3.3
+ */
+#if 0
+#define FLT_SNAN
+#define DBL_SNAN
+#define LDBL_SNAN
+#endif
+
+#define INFINITY ((float)__builtin_inff())
+
+#define NAN ((float)__builtin_nanf())
+
+#ifdef __STDC_IEC_60559_DFP__
+
+#define DEC_EVAL_METHOD 0
+
+#define DEC32_SNAN
+#define DEC64_SNAN
+#define DEC128_SNAN
+
+#define DEC_INFINITY
+
+#define DEC_NAN
+
+#define DEC32_MANT_DIG (7)
+#define DEC64_MANT_DIG (16)
+#define DEC128_MANT_DIG (34)
+
+#define DEC32_MIN_EXP (-94)
+#define DEC64_MIN_EXP (-382)
+#define DEC128_MIN_EXP (-6142)
+
+#define DEC32_MAX_EXP (97)
+#define DEC64_MAX_EXP (385)
+#define DEC128_MAX_EXP (6145)
+
+#define DEC32_MAX (9.999999E96DF)
+#define DEC64_MAX (9.999999999999999E384DD)
+#define DEC128_MAX (9.999999999999999999999999999999999E6144DL)
+
+#define DEC32_EPSILON (1E-6DF)
+#define DEC64_EPSILON (1E-15DD)
+#define DEC128_EPSILON (1E-33DL)
+
+#define DEC32_MIN (1E-95DF)
+#define DEC64_MIN (1E-383DD)
+#define DEC128_MIN (1E-6143DL)
+
+#define DEC32_TRUE_MIN (0.000001E-95DF)
+#define DEC64_TRUE_MIN (0.000000000000001E-383DD)
+#define DEC128_TRUE_MIN (0.000000000000000000000000000000001E-6143DL)
+
+#endif
+#endif
+
+#define __STDC_VERSION_FLOAT_H__ 202311L
 
 #endif /* __FLOAT_H__ */

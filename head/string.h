@@ -7,11 +7,11 @@
  * ISO/IEC 9899:1990 7.11
  *
  * Copyright (c) 2024 George Witt
- * SPDX-License-Identifier: BSD-2-Clause
+ * SPDX-License-Identifier: 
  */
 
 #ifndef __STRING_H__
-#define __STRING_H__
+#define __STRING_H__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L && \
     (!defined(_POSIX_C_SOURCE) || !defined(_XOPEN_SOURCE))
@@ -19,8 +19,8 @@
 #define _XOPEN_SOURCE 700
 #endif
 
-#define __STDDEF_H_WANT_NULL__
-#define __STDDEF_H_WANT_size_t__
+#define __STDDEF_H_WANT_NULL__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
+#define __STDDEF_H_WANT_size_t__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
 #include <stddef.h>
 
 /**
@@ -117,6 +117,20 @@ void *memset(void *s, int c, size_t n);
  * ISO/IEC 9899:1990 7.11.6.3
  */
 size_t strlen(const char * s);
+
+char *strncpy(char *restrict s1, const char *restrict s2, size_t n);
+
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
+#if defined(__STDC_WANT_LIB_EXT1__) && __STDC_WANT_LIB_EXT1__ == 0
+#else
+
+typedef int errno_t;
+typedef size_t rsize_t;
+errno_t memcpy_s(void *restrict s1, rsize_t s1max, const void *restrict s2,
+                 rsize_t n);
+
+#endif
+#endif
 
 #if (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE >= 200809L) || \
     (defined(_XOPEN_SOURCE) && _XOPEN_SOURCE >= 700)

@@ -8,16 +8,27 @@
  * ISO/IEC 9899:2011 7.19
  *
  * Copyright (c) 2024 George Witt
- * SPDX-License-Identifier: BSD-2-Clause
+ * SPDX-License-Identifier: 
  */
+
+#undef __ptrdiff_t__
+#define __ptrdiff_t__ signed long
+
+#ifndef __UCHAR_H__
+#define __UCHAR_H__
+#include <uchar.h>
+#undef __UCHAR_H__
+#endif
+#undef __wchar_t__
+#define __wchar_t__ __char32_t__
 
 #if !defined(__STDDEF_H_WANT_NULL__) && !defined (__STDDEF_H_WANT_size_t__)
 
 #ifndef __STDDEF_H__
-#define __STDDEF_H__
+#define __STDDEF_H__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
 
-#define __STDDEF_H_WANT_NULL__
-#define __STDDEF_H_WANT_size_t__
+#define __STDDEF_H_WANT_NULL__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
+#define __STDDEF_H_WANT_size_t__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
 
 /**
  * @def offsetof
@@ -33,14 +44,52 @@
  *
  * ISO/IEC 9899:1990 7.1.6
  */
-typedef signed long ptrdiff_t;
+typedef __ptrdiff_t__ ptrdiff_t;
 
 /**
  * @typedef wchar_t
  *
  * ISO/IEC 9899:1990 7.1.6
  */
-typedef int wchar_t;
+typedef __wchar_t__ wchar_t;
+//__STDC_ISO__10646__ yyyymmL
+//199305
+//199602
+//199610
+//199711
+//199712
+//199806
+//199807
+//199809
+//199810
+//199811
+//199905
+//199907
+//199908
+//200009
+//200111
+//200207
+//200312
+//200511
+//200607
+//200802
+//200807
+//200812
+//200910
+//201007
+//201103
+//201206
+//201304
+//201409
+//201505
+//201605
+//201712
+//201901
+//201906
+//202012
+//202307
+//__STDC_MB_MIGHT_NEQ_WC__ 1
+
 
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
@@ -53,6 +102,8 @@ typedef int wchar_t;
 typedef long double max_align_t;
 
 #if defined(__STDC_WANT_LIB_EXT1__) && __STDC_WANT_LIB_EXT1__ == 1
+
+//__STDC_LIB_EXT1__
 
 /**
  * @typedef rsize_t

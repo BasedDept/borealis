@@ -7,7 +7,7 @@
 --
 --  Copyright (c) 1992-1995 Intermetrics, Inc.
 --  Copyright (c) 2024 George Witt
---  SPDX-License-Identifier: BSD-2-Clause
+--  SPDX-License-Identifier:
 
 generic
    type Source (<>) is limited private;

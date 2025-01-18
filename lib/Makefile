@@ -5,15 +5,34 @@
 #
 # Copyright (c) 2024 George Witt
 # SPDX-License-Identifier: BSD-2-Clause
-
 .POSIX:
+.PHONY:
 
-all:
-	@cd libc; $(MAKE)
-	@cd libada; $(MAKE)
-	@cd libfdt; $(MAKE)
+SUBDIRS= libc libada libfdt
 
-clean:
-	@cd libc; $(MAKE) clean
-	@cd libada; $(MAKE) clean
-	@cd libfdt; $(MAKE) clean
+all: buildlibs
+
+clean: cleanlibs
+
+buildlibs: $(SUBDIRS)
+
+cleanlibs: $(SUBDIRS:=_CLEAN)
+
+$(SUBDIRS): .PHONY
+	@cd $@; $(MAKE); echo
+
+$(SUBDIRS:=_CLEAN): .PHONY
+	-@cd $(@:_CLEAN=) && $(MAKE) clean
+	@echo
+
+# Cross-directory dependencies
+libada:
+libc: libada
+libfdt: libc
+
+#-@rm *.a
+#-@ln -s lib*/*.a ./
+#-@rm *.so
+#-@ln -s lib*/*.so ./
+#-@rm *.a
+#-@rm *.so

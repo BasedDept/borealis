@@ -8,18 +8,15 @@
  * ISO/IEC 9899:1999 7.15
  *
  * Copyright (c) 2024 George Witt
- * SPDX-License-Identifier: BSD-2-Clause
+ * SPDX-License-Identifier: 
  */
+
+#if !defined(__STDARG_H_WANT_va_list__)
 
 #ifndef __STDARG_H__
-#define __STDARG_H__
+#define __STDARG_H__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
 
-/**
- * @typedef va_list
- *
- * ISO/IEC 9899:1990 7.8
- */
-typedef __builtin_va_list va_list;
+#define __STDARG_H_WANT_va_list__
 
 /**
  * @def va_start
@@ -62,3 +59,16 @@ typedef __builtin_va_list va_list;
 #endif
 
 #endif /* __STDARG_H__ */
+#endif
+
+#if defined(__STDARG_H_WANT_va_list__)
+
+/**
+ * @typedef va_list
+ *
+ * ISO/IEC 9899:1990 7.8
+ */
+typedef __builtin_va_list va_list;
+
+#undef __STDARG_H_WANT_va_list__
+#endif

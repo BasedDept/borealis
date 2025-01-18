@@ -7,13 +7,18 @@
  * Copyright (c) 2024 George Witt
  * SPDX-License-Identifier: NOASSERTION
  */
+#if 0
 #ifndef BOOT_ARCH_H
 #define BOOT_ARCH_H
 
-#ifdef __riscv
-#include "arch/riscv/riscv_sbi.h"
+#include <stddef.h>
 
 #include <stdbool.h>
+#include <sys/types.h>
+
+#ifdef __riscv
+#include "arch/riscv/riscv.h"
+#include "arch/riscv/riscv_sbi.h"
 
 extern size_t strlen(const char * s);
 
@@ -49,6 +54,17 @@ static inline int firmware_putchar(int c)
 {
     return (int)sbi_console_putchar(c);
 }
+
+static inline void *read_sp(void)
+{
+    return riscv_read_sp();
+}
+
+#else
+static inline int firmware_puts(const char *s) { return -1; }
+static inline int firmware_putchar(int c) { return -1; }
+
 #endif
 
+#endif
 #endif

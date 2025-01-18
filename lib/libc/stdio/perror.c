@@ -13,32 +13,27 @@
 
 #include <errno.h>
 
-#define CONSOLE_BOLD "\x1b[1m"
-#define CONSOLE_RESET "\x1b[0m"
-
 void perror(const char *s)
 {
     // bold signifies stderr
-    puts(CONSOLE_BOLD);
-    puts(s);
+    fputs(s, stderr);
     switch (errno) {
     case EDOM:
-        puts(": Numerical argument out of domain (EDOM)\n");
+        fputs(": Numerical argument out of domain (EDOM)\n", stderr);
         break;
     case ERANGE:
-        puts(": Numerical result out of range (ERANGE)\n");
+        fputs(": Numerical result out of range (ERANGE)\n", stderr);
         break;
     case EILSEQ:
-        puts(": Invalid or incomplete multibyte or wide character (EILSEQ)\n");
+        fputs(": Invalid or incomplete multibyte or wide character (EILSEQ)\n", stderr);
         break;
     case ENOTRECOVERABLE:
-        puts(": State not recoverable (ENOTRECOVERABLE)\n");
+        fputs(": State not recoverable (ENOTRECOVERABLE)\n", stderr);
         break;
     case EEASTEREGG:
-        puts(": Easter Egg (EEASTEREGG)\n");
+        fputs(": Easter Egg (EEASTEREGG)\n", stderr);
         break;
     default:
-        puts("\n");
+        fputs("\n", stderr);
     }
-    puts(CONSOLE_RESET);
 }

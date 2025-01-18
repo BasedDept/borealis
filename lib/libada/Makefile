@@ -8,42 +8,33 @@
 
 .POSIX:
 
-.PRECIOUS:
-.SUFFIXES: .c .h .S .s .adb .ads .o .ali
-
 LIBA= libada.a
+LIBSO= libada.so
 
-CFLAGS= $(CFLAGS_GLOBAL) -std=c99 -Wall -ffreestanding -nostdinc \
-        -I"$(PROJECTDIR)/head" -fpic $(CFLAGS_ARCH)
+CFLAGS= $(CFLAGS_GLOBAL) -std=c99 -Wall -fpic $(CFLAGS_ARCH)
 ADAFLAGS= $(ADAFLAGS_GLOBAL) -nostdlib -fpic -I"$(PROJECTDIR)/head" \
           $(ADAFLAGS_ARCH)
 LDFLAGS= $(LDFLAGS_GLOBAL) $(LDFLAGS_ARCH)
 
-OBJS= s-stalib.o binding.o $(OBJS_ARCH)
-ALIS= s-stalib.ali $(ALIS_ARCH)
+OBJS= libada.o s-stalib.o binding.o $(OBJS_ARCH)
+ALIS= libada.ali s-stalib.ali $(ALIS_ARCH)
 LIBS= "$(PROJECTDIR)/head/ada.o" "$(PROJECTDIR)/head/system.o"
 
-all: $(LIBA)
+GNATBIND_OBJ= b_$(LIBSO:%.so=%.o)
 
-clean:
-	-rm -r $(OBJS) $(ALIS) b_$(PROG).o b_$(PROG).ali b_$(PROG).adb \
-	       b_$(PROG).ads $(LIBA)
+all:
+all: $(LIBA)
 
 s-stalib.o: s-stalib.adb
 binding.o: binding.c
+libada.o: libada.adb libada.ads
+	@echo "[GNAT]     $@"
+	@$(GNAT) -nostdlib -I$(PROJECTDIR)/head $(ADAFLAGS) -c $< -o $@
 
 #include arch/$(TARGET_ARCH)/arch.mk
 
-$(LIBA): $(OBJS)
-	$(AR) -c -r -s $(LIBA) $(OBJS) $(LIBS)
+include $(PROJECTDIR)/mk/lib.mk
+include $(PROJECTDIR)/mk/lang_c.mk
+#include $(PROJECTDIR)/mk/lang_asm.mk
+include $(PROJECTDIR)/mk/lang_ada_std.mk
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
-
-.adb.o:
-	$(GNAT) $(ADAFLAGS) -ffunction-sections -fdata-sections \
-	        -gnatg -Wl,--gc-sections -c $< -o $@
-
-b_$(PROG).o:
-	$(GNATBIND) -I"$(PROJECTDIR)/head" -n $(ALIS) -o $*.adb
-	$(GNAT) $(ADAFLAGS) -c b_$(PROG).adb -o $@

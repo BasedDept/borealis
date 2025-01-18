@@ -9,12 +9,14 @@
  * Copyright (c) 2024 George Witt
  * SPDX-License-Identifier: NOASSERTION
  */
+#include <stdint.h>
+#include <stddef.h>
 #include <string.h>
 
 int strncmp(const char *s1, const char *s2, size_t n)
 {
-   for (size_t i = 0; i < n; i++) {
-      int cmp = (s1 + i) - (s2 + i);
+   for (ptrdiff_t i = 0; i < n; i++) {
+      ptrdiff_t cmp = (s1 + i) - (s2 + i);
       if (cmp != 0) {
          return cmp;
       }

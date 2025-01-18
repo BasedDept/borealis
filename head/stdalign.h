@@ -7,12 +7,12 @@
  * ISO/IEC 9899:2011 7.15
  *
  * Copyright (c) 2024 George Witt
- * SPDX-License-Identifier: BSD-2-Clause
+ * SPDX-License-Identifier: 
  */
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
 #ifndef __STDALIGN_H__
-#define __STDALIGN_H__
+#define __STDALIGN_H__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
 
 /**
  * @def alignas

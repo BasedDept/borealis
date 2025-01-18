@@ -12,9 +12,11 @@
 #define _POSIX_C_SOURCE 200809L
 #define _XOPEN_SOURCE 700
 #include <string.h>
+#include <stdint.h>
 
 size_t strnlen(const char *s, size_t maxlen)
 {
+   /*@ loop assigns i; */
    for (size_t i = 0; i < maxlen; i++) {
       if (*(s + i) == '\0') {
          return i + 1;

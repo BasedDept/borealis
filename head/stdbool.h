@@ -7,12 +7,12 @@
  * ISO/IEC 9899:1999 7.16
  *
  * Copyright (c) 2024 George Witt
- * SPDX-License-Identifier: BSD-2-Clause
+ * SPDX-License-Identifier: 
  */
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
 #ifndef __STDBOOL_H__
-#define __STDBOOL_H__
+#define __STDBOOL_H__ /* NOLINT(cert-dcl37-c,cert-dcl51-cpp) */
 
 /**
  * @def bool

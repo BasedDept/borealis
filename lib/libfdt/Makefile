@@ -8,21 +8,16 @@
 
 .POSIX:
 
-.PRECIOUS:
-.SUFFIXES: .c .h .S .s .o
-
 LIBA= libfdt.a
 LIBSO= libfdt.so
+
+CFLAGS= $(CFLAGS_GLOBAL) -std=c2x -Wall -D_POSIX_C_SOURCE=200809L -I. -fpic
+LDFLAGS= $(LDFLAGS_GLOBAL) -nostdlib -z relro -z now
+
 OBJS= fdt_addresses.o fdt.o fdt_check.o fdt_empty_tree.o fdt_overlay.o fdt_ro.o fdt_rw.o fdt_strerror.o fdt_sw.o fdt_wip.o
 LIBS= "$(PROJECTDIR)/lib/libc/libc.a"
 
-CFLAGS= $(CFLAGS_GLOBAL) -std=c2x -Wall -nostdinc -D_POSIX_C_SOURCE=200809L -I"$(PROJECTDIR)/head" -I. -fpic
-LDFLAGS= $(LDFLAGS_GLOBAL) -nostdlib -z relro -z now
-
 all: $(LIBA)
-
-clean:
-	-rm -r $(OBJS) $(LIBA) $(LIBSO)
 
 fdt_addresses.o: fdt_addresses.c
 fdt.o: fdt.c
@@ -37,15 +32,7 @@ fdt_wip.o: fdt_wip.c
 
 #include arch/$(TARGET_ARCH)/arch.mk
 
-$(LIBA): $(OBJS)
-	$(AR) -c -r -s $(LIBA) $(OBJS)
-
-$(LIBSO): $(OBJS)
-	$(LD) $(LDFLAGS) -shared -o $(LIBSO) $(OBJS)
-
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
-
-.S.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+include $(PROJECTDIR)/mk/lib.mk
+include $(PROJECTDIR)/mk/lang_c.mk
+include $(PROJECTDIR)/mk/lang_asm.mk
 

@@ -21,14 +21,19 @@ LIBS=
 
 all:
 
-clean:
-	-rm -r $(OBJS) $(PROG)
+#clean:
+#	-rm -r $(OBJS) $(PROG)
 
-$(PROG): $(OBJS)
-	$(LD) $(LDFLAGS) -o $(PROG) $(OBJS) $(LIBS)
+#$(PROG): $(OBJS)
+#	$(LD) $(LDFLAGS) -o $(PROG) $(OBJS) $(LIBS)
+#
+#.c.o:
+#	$(CC) $(CFLAGS) -c $< -o $@
+#
+#.S.o:
+#	$(CC) $(CFLAGS) -c $< -o $@
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
-
-.S.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+#include $(PROJECTDIR)/mk/prog_kernel.mk
+include $(PROJECTDIR)/mk/lang_c.mk
+include $(PROJECTDIR)/mk/lang_asm.mk
+include $(PROJECTDIR)/mk/lang_ada.mk
